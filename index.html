@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shilpkar Marketplace</title>
+    <!-- Use Tailwind CSS for a fast, responsive, and easy-to-use design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter for body text, Lora for serif headings, and Dancing Script for the creative logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-lora {
+            font-family: 'Lora', serif;
+        }
+        .font-dancing-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-playfair-display {
+            font-family: 'Playfair+Display', serif;
+        }
+        /* A simple animation for the chat button */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="w-full py-4 px-6 md:px-12 bg-gray-900/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <!-- New Logo Section -->
+            <div class="flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-red-600">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm0 14.5a.75.75 0 00.75-.75v-6a.75.75 0 00-1.5 0v6a.75.75 0 00.75.75zM12 11.25a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                    <path d="M11.646 16.295c.381.139.789.267 1.21.378l2.964-.988a3.142 3.142 0 012.396.953l1.848 1.848a.75.75 0 01-.53 1.28L18 20.25a.75.75 0 01-.75-.75V16.5c0-.621-.504-1.125-1.125-1.125H15.15a.75.75 0 00-.75.75v1.5c0 .414-.336.75-.75.75a.75.75 0 01-.75-.75v-1.5a.75.75 0 00-.75-.75h-.375c-.621 0-1.125-.504-1.125-1.125v-1.5a.75.75 0 01.75-.75h1.5a.75.75 0 00.75-.75V12a.75.75 0 01.75-.75h1.5a.75.75 0 00.75-.75V9c0-.621-.504-1.125-1.125-1.125H14.25c-.414 0-.75-.336-.75-.75V6.75a.75.75 0 01-.75-.75V5.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V3a.75.75 0 00-.75-.75H9.75a.75.75 0 01-.75-.75V.75a.75.75 0 00-.75-.75h-1.5A.75.75 0 016 0V1.5A.75.75 0 006.75 2.25h1.5a.75.75 0 01.75.75V4.5a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75V6a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75V9a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75V12a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75V15a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75v1.5a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75V21a.75.75 0 00.75.75h1.5a.75.75 0 01.75.75V24a.75.75 0 00.75.75h1.5A.75.75 0 0124 24V22.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V19.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V16.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V13.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V10.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V7.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V4.5a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75V1.5a.75.75 0 00-.75-.75z" />
+                </svg>
+                <div class="text-3xl font-bold text-red-600 tracking-wide font-dancing-script">Shilpkar</div>
+            </div>
+            
+            <!-- Navigation Links (for larger screens) -->
+            <nav class="hidden md:flex space-x-8 text-lg">
+                <a href="#" class="text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('home-page')">Home</a>
+                <a href="#" class="text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('shop-page')">Shop</a>
+                <a href="#" class="text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('categories-page')">Categories</a>
+                <a href="#" class="text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('wish-page')">Wish Page</a>
+                <a href="#" class="text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('about-page')">About</a>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-200 hover:text-red-600 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.133 1.29.5 1.29H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </button>
+                <button class="hidden md:block text-gray-200 hover:text-red-600 transition duration-300" onclick="showLogin()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </button>
+                <!-- Hamburger menu for mobile -->
+                <button class="md:hidden text-gray-200 hover:text-red-600 transition duration-300" onclick="toggleMobileMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 text-center">
+            <a href="#" class="block py-2 text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('home-page')">Home</a>
+            <a href="#" class="block py-2 text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('shop-page')">Shop</a>
+            <a href="#" class="block py-2 text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('categories-page')">Categories</a>
+            <a href="#" class="block py-2 text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('wish-page')">Wish Page</a>
+            <a href="#" class="block py-2 text-gray-200 hover:text-red-600 transition duration-300" onclick="showPage('about-page')">About</a>
+            <button onclick="showLogin()" class="block w-full py-2 text-gray-200 hover:text-red-600 transition duration-300">Log In</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow p-6 md:p-12 max-w-7xl mx-auto w-full">
+        
+        <!-- Home Page Section (Initially Active) -->
+        <section id="home-page" class="page-section active">
+            <!-- Hero Section -->
+            <div class="text-center mb-12">
+                <!-- Slogan with a bold, elegant font -->
+                <p class="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-red-600 drop-shadow-lg font-playfair-display">
+                    Create a life you're obsessed with
+                </p>
+                <h1 class="text-4xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-gray-50 drop-shadow-xl font-lora mt-4">
+                    Discover Authentic Indian Crafts
+                </h1>
+                <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+                    Explore handcrafted items, unique art, and traditional creations from talented artisans across India.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <button class="bg-red-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 shadow-lg" onclick="showPage('shop-page')">
+                        Shop Now
+                    </button>
+                    <button class="bg-transparent border-2 border-red-600 text-red-600 font-semibold py-3 px-8 rounded-full hover:bg-red-600 hover:text-white transition duration-300">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <!-- New Section: Importance of Artisans -->
+            <section class="my-16 text-center">
+                <h2 class="text-3xl font-bold mb-6 text-red-600 font-lora">The Heart of Shilpkar: Our Artisans</h2>
+                <p class="text-lg text-gray-300 max-w-4xl mx-auto">
+                    Every product on Shilpkar is a story, a tradition, and a livelihood. Our artisans are the guardians of India's rich cultural heritage, preserving ancient techniques and passing them down through generations. When you buy a product from Shilpkar, you're not just purchasing an item; you are directly supporting a family, empowering a community, and ensuring that these invaluable crafts continue to thrive.
+                </p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-2 font-lora">Empowerment through Patronage</h3>
+                        <p class="text-gray-300">Your purchase provides a **fair wage** to the artisan, allowing them to reinvest in their craft, buy quality raw materials, and support their families. It frees them from the cycle of middlemen and unfair pricing.</p>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-2 font-lora">Preserving Tradition</h3>
+                        <p class="text-gray-300">By choosing handmade, you help **sustain and preserve traditional art forms** that are at risk of being lost to mass production. Your support encourages the next generation to learn and continue these beautiful crafts.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section for Artisans -->
+            <section class="my-16 text-center">
+                <h2 class="text-3xl font-bold mb-6 text-red-600 font-lora">For Artisans & Suppliers</h2>
+                <p class="text-lg text-gray-300 max-w-4xl mx-auto">
+                    Ready to share your art or supply the raw materials that make it possible? Our platform is designed to empower local Indian artisans and suppliers, providing you with the tools to grow your business and reach a global audience.
+                </p>
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-2 font-lora">Grow Your Business</h3>
+                        <p class="text-gray-300">Sell your creations or raw materials to a wide audience without the hassle of building your own website.</p>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-2 font-lora">Connect with Buyers</h3>
+                        <p class="text-gray-300">Engage directly with customers who appreciate authentic, handcrafted goods and quality supplies.</p>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-2 font-lora">Simplified Logistics</h3>
+                        <p class="text-gray-300">We handle payments and shipping, so you can focus on what you do best: creating or providing.</p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <button class="bg-red-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 shadow-lg">
+                        Become a Seller
+                    </button>
+                </div>
+            </section>
+
+            <!-- Product Grid Section (Home Page) -->
+            <section>
+                <h2 class="text-3xl font-bold text-center mb-8 font-lora">Featured Collection</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- The first three product cards were hardcoded and are now dynamically generated in JS -->
+                </div>
+            </section>
+        </section>
+
+        <!-- Shop Page Section -->
+        <section id="shop-page" class="page-section">
+            <h2 class="text-3xl font-bold text-center mb-6 text-red-600 font-lora">All Products</h2>
+            
+            <!-- Search Bar -->
+            <div class="mb-8 w-full max-w-lg mx-auto">
+                <input type="text" id="shop-search-input" oninput="filterProducts()" placeholder="Search for products..." class="w-full px-4 py-3 rounded-full bg-gray-800 text-gray-100 placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300">
+            </div>
+
+            <!-- Product Grid -->
+            <div id="shop-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Categories Page Section -->
+        <section id="categories-page" class="page-section">
+            <h2 class="text-3xl font-bold text-center mb-6 text-red-600 font-lora">Explore Categories</h2>
+            <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <!-- Category cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Wish Page Section (New) -->
+        <section id="wish-page" class="page-section">
+            <h2 class="text-3xl font-bold text-center mb-6 text-red-600 font-lora">Artisan Wish Page</h2>
+            <p class="text-center text-gray-300 mb-4 max-w-2xl mx-auto">
+                Customers can post their custom product requests here. Sellers can view these wishes and contact customers to bring their ideas to life.
+            </p>
+            <!-- New motivating line for buyers -->
+            <p class="text-center text-xl font-semibold text-gray-100 mb-8 max-w-2xl mx-auto">
+                Your dream creation is just a wish away. Let our artists bring your vision to life!
+            </p>
+            <div class="text-center mb-8">
+                <button id="toggle-view-btn" onclick="toggleView()" class="bg-red-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-red-700 transition duration-300">
+                    Switch to Seller View
+                </button>
+            </div>
+            
+            <!-- Customer View -->
+            <div id="customer-view" class="wish-view active">
+                <h3 class="text-2xl font-semibold mb-4 text-red-600">Submit Your Wish</h3>
+                <form id="wish-form" class="bg-gray-800 rounded-xl p-8 shadow-lg max-w-2xl mx-auto space-y-4">
+                    <div>
+                        <label for="wish-product-name" class="block text-sm font-medium text-gray-400">Product Name</label>
+                        <input type="text" id="wish-product-name" name="productName" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-red-600 focus:ring focus:ring-red-600 focus:ring-opacity-50 text-gray-100">
+                    </div>
+                    <div>
+                        <label for="wish-description" class="block text-sm font-medium text-gray-400">Detailed Description</label>
+                        <textarea id="wish-description" name="description" rows="4" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-red-600 focus:ring focus:ring-red-600 focus:ring-opacity-50 text-gray-100"></textarea>
+                    </div>
+                    <div>
+                        <label for="wish-contact" class="block text-sm font-medium text-gray-400">Contact Information</label>
+                        <input type="text" id="wish-contact" name="contact" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-red-600 focus:ring focus:ring-red-600 focus:ring-opacity-50 text-gray-100">
+                    </div>
+                    <div>
+                        <label for="wish-image-url" class="block text-sm font-medium text-gray-400">Image Idea (URL)</label>
+                        <input type="url" id="wish-image-url" name="imageUrl" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-red-600 focus:ring focus:ring-red-600 focus:ring-opacity-50 text-gray-100">
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300">
+                        Submit My Wish
+                    </button>
+                </form>
+            </div>
+
+            <!-- Seller View -->
+            <div id="seller-view" class="wish-view hidden">
+                <h3 class="text-2xl font-semibold mb-4 text-red-600">Customer Wishes</h3>
+                <div id="wishes-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Wishes will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page Section (New) -->
+        <section id="about-page" class="page-section">
+            <h1 class="text-4xl font-extrabold text-center mb-6 text-red-600 font-lora">Meet Our Artisans</h1>
+            <p class="text-center text-gray-300 mb-12 max-w-4xl mx-auto">
+                Shilpkar is more than just a marketplace; it's a community built on the passion and dedication of our talented artisans. Here are their stories, the challenges they face, and a glimpse into their best work.
+            </p>
+            <div id="artisan-profiles-container" class="space-y-16">
+                <!-- Artisan profiles will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Product Details Page Section -->
+        <section id="product-details-page" class="page-section">
+            <div class="mb-6">
+                <button onclick="goBack()" class="flex items-center space-x-2 text-red-600 hover:underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Back</span>
+                </button>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-8 shadow-2xl lg:flex lg:items-start lg:space-x-8">
+                <div class="w-full lg:w-1/2">
+                    <img id="product-image" src="" alt="Product Image" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+                    <h1 id="product-name" class="text-4xl font-bold text-red-600 font-lora mb-2"></h1>
+                    <span id="product-category" class="bg-red-600/20 text-red-400 text-sm font-medium px-2.5 py-0.5 rounded-full"></span>
+                    <p id="product-description" class="mt-4 text-gray-300 text-lg"></p>
+                    
+                    <div class="flex items-center mt-6">
+                        <span id="product-price" class="text-4xl font-bold text-gray-100 mr-4"></span>
+                        <button class="bg-red-600 text-white py-3 px-8 rounded-full font-semibold hover:bg-red-700 transition duration-300">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="mt-8 border-t border-gray-700 pt-8">
+                        <h2 class="text-2xl font-semibold text-red-600 font-lora mb-4">Seller's Story</h2>
+                        <p id="seller-info" class="text-gray-300 mb-2">Seller: <span id="seller-name" class="font-semibold"></span></p>
+                        <p id="seller-story" class="text-gray-400 leading-relaxed"></p>
+                    </div>
+
+                    <div class="mt-8 border-t border-gray-700 pt-8" id="customization-section">
+                        <h2 class="text-2xl font-semibold text-red-600 font-lora mb-4">Customize This Item</h2>
+                        <!-- Customization options will be dynamically inserted here -->
+                        <div id="custom-options" class="space-y-4"></div>
+                        <button class="mt-4 w-full bg-gray-700 text-gray-300 py-2 rounded-lg font-semibold hover:bg-gray-600 transition duration-300">
+                            Apply Customization
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Us Section -->
+        <section class="my-16 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-red-600 font-lora">Contact Us</h2>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                Have a question or need support? We're here to help!
+                Reach out to us and we'll get back to you as soon as possible.
+            </p>
+            <div class="mt-8 bg-gray-800 rounded-xl p-8 shadow-lg max-w-lg mx-auto">
+                <h3 class="text-xl font-semibold text-gray-50 mb-4 font-lora">Get in Touch</h3>
+                <p class="text-gray-300">
+                    <span class="font-bold">Email:</span>
+                    <a href="mailto:support@shilpkar.com" class="text-red-600 hover:underline ml-2">support@shilpkar.com</a>
+                </p>
+                <p class="text-gray-300 mt-2">
+                    <span class="font-bold">Phone:</span>
+                    <a href="tel:+919876543210" class="text-red-600 hover:underline ml-2">+91 98765 43210</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Chatbot Button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button id="chat-button" class="relative bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 hover:scale-110 animate-pulse-slow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M14 15h2a2 2 0 002-2V8a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h2m2 3v3m0 0h2m-2 0l-1-1m1 1l1-1m-2 2h4" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50">
+        <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm mx-4 p-6">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                <h2 class="text-2xl font-semibold text-red-600 font-lora">Seller Login</h2>
+                <button onclick="hideLogin()" class="text-gray-400 hover:text-gray-200 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Login Form -->
+            <form class="mt-6 space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-red-600 focus:ring focus:ring-red-600 focus:ring-opacity-50 text-gray-100">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-400">Password</label>
+                    <input type="password" id="password" name="password" class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 focus:border-red-600 focus:ring focus:ring-red-600 focus:ring-opacity-50 text-gray-100">
+                </div>
+                <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300">
+                    Log In
+                </button>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-400">
+                Don't have an account? <a href="#" class="text-red-600 hover:underline">Register now</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Chatbot Modal -->
+    <div id="chatbot-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center z-50">
+        <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md mx-4 p-6 flex flex-col h-[70vh]">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                <h2 class="text-2xl font-semibold text-red-600 font-lora">Artisan Bot</h2>
+                <button onclick="hideChatbot()" class="text-gray-400 hover:text-gray-200 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Chat Log Area -->
+            <div class="flex-grow overflow-y-auto my-4 p-2 space-y-4">
+                <!-- Bot Welcome Message -->
+                <div class="flex justify-start">
+                    <div class="bg-red-600 text-white rounded-lg p-3 max-w-[80%] shadow-md">
+                        Namaste! I'm the Artisan Bot. I can help you find unique products or answer questions about our store.
+                    </div>
+                </div>
+                <!-- Example User Message -->
+                <div class="flex justify-end">
+                    <div class="bg-gray-700 text-gray-100 rounded-lg p-3 max-w-[80%] shadow-md">
+                        How can I find handloom products?
+                    </div>
+                </div>
+                <!-- Bot Response -->
+                <div class="flex justify-start">
+                    <div class="bg-red-600 text-white rounded-lg p-3 max-w-[80%] shadow-md">
+                        I can help with that! Please use the search bar or go to the 'Categories' section to find our handloom collection.
+                    </div>
+                </div>
+            </div>
+            <!-- Input Area -->
+            <div class="flex items-center pt-4 border-t border-gray-700">
+                <input type="text" placeholder="Type your message..." class="flex-grow bg-gray-700 text-gray-100 placeholder-gray-400 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-600">
+                <button class="ml-4 bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="w-full py-6 px-12 bg-gray-900 text-center text-gray-400 mt-auto">
+        <p>&copy; 2024 Shilpkar. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        const chatButton = document.getElementById('chat-button');
+        const chatbotModal = document.getElementById('chatbot-modal');
+        const loginModal = document.getElementById('login-modal');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        // Main page sections
+        const homePage = document.getElementById('home-page');
+        const shopPage = document.getElementById('shop-page');
+        const categoriesPage = document.getElementById('categories-page');
+        const wishPage = document.getElementById('wish-page');
+        const aboutPage = document.getElementById('about-page'); // New
+        const productDetailsPage = document.getElementById('product-details-page');
+
+        // Shop page elements
+        const shopProductGrid = document.getElementById('shop-product-grid');
+        const shopSearchInput = document.getElementById('shop-search-input');
+        
+        // Categories page elements
+        const categoryGrid = document.getElementById('category-grid');
+
+        // About page elements
+        const artisanProfilesContainer = document.getElementById('artisan-profiles-container'); // New
+
+        // Wish page elements
+        const customerView = document.getElementById('customer-view');
+        const sellerView = document.getElementById('seller-view');
+        const toggleViewBtn = document.getElementById('toggle-view-btn');
+        const wishForm = document.getElementById('wish-form');
+        const wishesList = document.getElementById('wishes-list');
+
+        // Product details page elements
+        const productImage = document.getElementById('product-image');
+        const productName = document.getElementById('product-name');
+        const productCategory = document.getElementById('product-category');
+        const productDescription = document.getElementById('product-description');
+        const productPrice = document.getElementById('product-price');
+        const sellerName = document.getElementById('seller-name');
+        const sellerStory = document.getElementById('seller-story');
+        const customOptions = document.getElementById('custom-options');
+
+        let previousPage = 'home-page';
+
+        // In-memory data for wishes
+        let wishes = [
+            { id: 1, productName: "Custom Clay Lamp", description: "I'd like a terracotta lamp with a custom pattern of lotuses.", contact: "customer1@email.com", imageUrl: "https://placehold.co/400x300/e0e0e0/555555?text=Custom+Lamp+Idea" },
+            { id: 2, productName: "Silver Engraved Anklet", description: "I'm looking for a pair of silver anklets with a small peacock engraved on each. Should be lightweight.", contact: "customer2@email.com", imageUrl: "" }
+        ];
+
+        // Product data array with new fields, including raw materials
+        const products = [
+            {
+                name: "Handcrafted Wooden Toy",
+                description: "A playful handcrafted wooden toy, meticulously carved and painted with non-toxic, vibrant colors. It's designed to spark imagination and is a safe, eco-friendly alternative to plastic toys.",
+                price: "₹450",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Handcrafted+Wooden+Toy",
+                category: "Wood Crafts",
+                sellerName: "Rohan Sharma",
+                sellerStory: "I come from a long line of woodcarvers in Rajasthan. This toy is inspired by the traditional puppets we used to make, but with a modern twist to make it a durable and timeless piece for any child's collection. Each piece is hand-sanded to ensure a smooth finish.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=RS",
+                customizableOptions: ["Color", "Text"]
+            },
+            {
+                name: "Jaipuri Meenakari Jewellery",
+                description: "A pair of elegant earrings featuring intricate Meenakari work from Jaipur. The delicate enamel work and vibrant colors make this piece a perfect accessory for both traditional and modern outfits.",
+                price: "₹1200",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Jaipuri+Meenakari+Jewellery",
+                category: "Jewellery",
+                sellerName: "Pooja Singh",
+                sellerStory: "Meenakari is a craft passed down through my family for generations. I learned the art of enameling from my grandmother, and I pour my heart into every piece. This design reflects the floral patterns found in Jaipur's royal palaces, a tribute to our rich cultural heritage.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=PS",
+                customizableOptions: ["Color", "Engraving"]
+            },
+            {
+                name: "Handloom Cotton Saree",
+                description: "A soft and light handloom saree with a traditional border, perfect for any occasion. Woven with pure cotton, this saree is breathable and drapes beautifully, making it comfortable for all-day wear.",
+                price: "₹2500",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Handloom+Cotton+Saree",
+                category: "Textiles",
+                sellerName: "Anjali Gupta",
+                sellerStory: "Every thread of this saree is hand-spun and hand-woven in our small workshop in West Bengal. It takes weeks to complete just one piece. My family and I work together, preserving the traditional weaving techniques that are slowly disappearing. We hope this saree brings a touch of our heritage to your wardrobe.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=AG",
+                customizableOptions: ["Border Design"]
+            },
+            {
+                name: "Blue Pottery Vase",
+                description: "A handcrafted blue pottery vase, featuring intricate floral patterns. Its unique shape and striking blue color make it a stunning piece of decor for any living space.",
+                price: "₹750",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Blue+Pottery+Vase",
+                category: "Pottery",
+                sellerName: "Mahesh Kumar",
+                sellerStory: "Pottery is my life's passion. I have been working with clay since I was a child, learning from my father. The vibrant blue glaze on this vase is made from a special, traditional recipe that has been in my family for over a hundred years. It represents the beautiful skies of our hometown.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=MK",
+                customizableOptions: ["Color", "Size"]
+            },
+            {
+                name: "Warli Art Painting",
+                description: "A vibrant painting depicting a tribal village scene using traditional Warli art. The minimalist and rhythmic style of the painting tells a story of community, celebration, and harmony with nature.",
+                price: "₹900",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Warli+Art+Painting",
+                category: "Paintings",
+                sellerName: "Sunita Devi",
+                sellerStory: "I started painting to keep the stories of our village alive. Warli art is more than just drawing; it is our history, our rituals, and our connection to the earth. This painting shows a harvest festival, a time when we all come together. I hope it brings you joy and a sense of belonging.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=SD",
+                customizableOptions: ["Canvas Size", "Renaming"]
+            },
+            {
+                name: "Terracotta Ganesh Idol",
+                description: "A beautifully sculpted idol of Lord Ganesh made from natural terracotta clay. This eco-friendly idol is perfect for home puja rituals and as a symbol of good fortune.",
+                price: "₹1500",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Terracotta+Ganesh+Idol",
+                category: "Sculpture",
+                sellerName: "Manoj Das",
+                sellerStory: "The process of creating a Ganesh idol is a spiritual journey for me. I use clay from the sacred riverbed near my village, and each curve and detail is molded with a prayer. This is not just a statue; it is a symbol of faith and devotion, created with the hope of bringing blessings to your home.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=MD",
+                customizableOptions: ["Size"]
+            },
+            {
+                name: "Phad Art Scroll",
+                description: "A hand-painted narrative scroll using the ancient folk art of Phad from Rajasthan. The vibrant colors and detailed scenes depict epic tales and mythological stories.",
+                price: "₹3000",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Phad+Art+Scroll",
+                category: "Paintings",
+                sellerName: "Bhagwati Lal",
+                sellerStory: "Phad painting is my family's legacy. I am the ninth generation of my family to practice this art. This scroll tells the story of Pabuji, a folk deity. Each segment is a chapter in his life, and I painted it to honor our ancestors and continue their tradition for a new generation.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=BL",
+                customizableOptions: ["Story Request"]
+            },
+            {
+                name: "Zardozi Embroidered Clutch",
+                description: "An elegant clutch purse featuring rich Zardozi embroidery. The intricate gold and silver thread work adds a touch of royal luxury, perfect for special occasions.",
+                price: "₹1800",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Zardozi+Embroidered+Clutch",
+                category: "Textiles",
+                sellerName: "Shaista Begum",
+                sellerStory: "Zardozi is a craft that requires immense patience and precision. My mother taught me this art, and I have been doing it for over two decades. This clutch is a symbol of my dedication and love for this craft. I chose patterns that remind me of Mughal-era designs, bringing a piece of history to modern fashion.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=SB",
+                customizableOptions: ["Initials", "Color"]
+            },
+            {
+                name: "Handmade Marble Inlay Coasters",
+                description: "A set of four exquisite coasters made from white marble with colorful gemstone inlay. Each piece is a testament to the Mughal-era art of 'Pietra Dura'.",
+                price: "₹1100",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Marble+Inlay+Coasters",
+                category: "Stone Crafts",
+                sellerName: "Arun Vijay",
+                sellerStory: "I live and work near the Taj Mahal, and I am inspired by its timeless beauty. The art of marble inlay is intricate, requiring a steady hand and a keen eye. These coasters are a miniature version of that majestic art form, allowing you to hold a piece of history in your hands.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=AV",
+                customizableOptions: ["Shape", "Color"]
+            },
+            // New products for raw materials
+            {
+                name: "Handloom Cotton Yarn",
+                description: "Sustainably sourced, high-quality cotton yarn in natural off-white. Perfect for weaving, knitting, and other textile crafts. Sold in 500g bundles.",
+                price: "₹300",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Handloom+Cotton+Yarn",
+                category: "Raw Materials",
+                sellerName: "Siddharth Traders",
+                sellerStory: "Our family has been trading in textiles for three generations. We source our cotton directly from farmers who practice sustainable agriculture, ensuring that our yarn is not only high-quality but also environmentally friendly. We believe in providing the best raw materials to help artisans create masterpieces.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=ST",
+                customizableOptions: ["Weight (kg)"]
+            },
+            {
+                name: "Natural Indigo Dye",
+                description: "Pure, natural indigo dye powder derived from Indigofera tinctoria plants. Ideal for dyeing fabrics and creating deep, lasting blue colors. Sold in 100g sachets.",
+                price: "₹450",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Natural+Indigo+Dye",
+                category: "Raw Materials",
+                sellerName: "Kavita Dyes",
+                sellerStory: "I started this business to promote traditional and natural dyeing methods. My family and I harvest and process the indigo plants ourselves, ensuring the highest purity and potency of the dye. We are passionate about preserving this ancient art and providing a safe, natural alternative to synthetic dyes.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=KD",
+                customizableOptions: ["Weight (g)"]
+            },
+            {
+                name: "Terracotta Clay",
+                description: "Finely sieved, high-quality terracotta clay ready for pottery and sculpting. Comes in a moisture-sealed bag to ensure perfect consistency for molding.",
+                price: "₹200",
+                image: "https://placehold.co/600x400/5e473e/FFF0F5?text=Terracotta+Clay",
+                category: "Raw Materials",
+                sellerName: "Mittal Ceramics",
+                sellerStory: "As a potter myself, I understand the importance of good clay. We dig our clay from the banks of a river known for its rich, fine soil. We process it carefully to remove impurities, leaving you with a perfect material for your creative projects.",
+                profileImage: "https://placehold.co/150x150/111827/F3452B?text=MC",
+                customizableOptions: ["Weight (kg)"]
+            }
+        ];
+        
+        // This variable keeps track of the previous page to enable the "Back" button
+        let currentPageId = 'home-page';
+
+        // Function to render product cards
+        function renderProducts(productsToRender, targetElementId) {
+            const targetElement = document.getElementById(targetElementId);
+            targetElement.innerHTML = '';
+            if (productsToRender.length === 0) {
+                targetElement.innerHTML = '<p class="text-center text-gray-500">No products found for this search.</p>';
+            }
+            productsToRender.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = "bg-gray-800 rounded-xl overflow-hidden shadow-xl transform transition-transform duration-300 hover:scale-105 cursor-pointer";
+                productCard.setAttribute('onclick', `showProductDetails(${products.indexOf(product)})`);
+                
+                // Add the specific categories from the product object
+                const categories = Array.isArray(product.category) ? product.category.join(', ') : product.category;
+
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-red-600 font-lora">${product.name}</h3>
+                        <p class="text-gray-300 mt-2 text-sm">${product.description.substring(0, 100)}...</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-2xl font-bold text-gray-100">${product.price}</span>
+                            <button class="bg-red-600 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-red-700 transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                targetElement.appendChild(productCard);
+            });
+        }
+
+        // Function to render all unique categories
+        function renderCategories() {
+            const categories = [...new Set(products.map(p => p.category))];
+            categoryGrid.innerHTML = '';
+            categories.forEach(category => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = "bg-gray-800 rounded-xl overflow-hidden shadow-xl transform transition-transform duration-300 hover:scale-105 cursor-pointer text-center p-6";
+                categoryCard.setAttribute('onclick', `showCategory('${category}')`);
+                categoryCard.innerHTML = `
+                    <h3 class="text-2xl font-semibold text-red-600 font-lora">${category}</h3>
+                `;
+                categoryGrid.appendChild(categoryCard);
+            });
+        }
+
+        // Function to render artisan profiles
+        function renderArtisanProfiles() {
+            const uniqueArtisans = {};
+            products.forEach(product => {
+                if (!uniqueArtisans[product.sellerName]) {
+                    uniqueArtisans[product.sellerName] = {
+                        name: product.sellerName,
+                        story: product.sellerStory,
+                        profileImage: product.profileImage,
+                        bestProducts: []
+                    };
+                }
+                uniqueArtisans[product.sellerName].bestProducts.push(product);
+            });
+            
+            artisanProfilesContainer.innerHTML = '';
+            
+            for (const name in uniqueArtisans) {
+                const artisan = uniqueArtisans[name];
+                
+                const profileCard = document.createElement('div');
+                profileCard.className = "bg-gray-800 rounded-xl p-8 shadow-2xl flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8";
+                
+                // Artisan Info and Story
+                let bestProductsHtml = artisan.bestProducts.map(product => `
+                    <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
+                        <img src="${product.image}" alt="${product.name}" class="rounded-lg mb-2 w-full">
+                        <p class="text-sm font-semibold text-gray-100 text-center">${product.name}</p>
+                    </div>
+                `).join('');
+
+                if (artisan.bestProducts.length > 2) {
+                     bestProductsHtml = artisan.bestProducts.slice(0, 2).map(product => `
+                        <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
+                            <img src="${product.image}" alt="${product.name}" class="rounded-lg mb-2 w-full">
+                            <p class="text-sm font-semibold text-gray-100 text-center">${product.name}</p>
+                        </div>
+                    `).join('');
+                }
+
+                profileCard.innerHTML = `
+                    <div class="flex-shrink-0">
+                        <img src="${artisan.profileImage}" alt="${artisan.name}" class="w-32 h-32 rounded-full border-4 border-red-600 shadow-lg">
+                    </div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h2 class="text-3xl font-bold text-red-600 font-lora mb-2">${artisan.name}</h2>
+                        <h3 class="text-xl font-semibold text-gray-200">The Story of a Creator</h3>
+                        <p class="mt-4 text-gray-400 leading-relaxed">${artisan.story}</p>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-2xl font-semibold text-red-600 font-lora mb-4">Our Best Products</h3>
+                            <div class="flex flex-wrap justify-center md:justify-start -m-2">
+                                ${bestProductsHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                artisanProfilesContainer.appendChild(profileCard);
+            }
+        }
+
+        // Function to render products for a specific category
+        function showCategory(categoryName) {
+            previousPage = currentPageId;
+            showPage('shop-page');
+            shopSearchInput.value = '';
+            const filteredProducts = products.filter(p => p.category === categoryName);
+            renderProducts(filteredProducts, 'shop-product-grid');
+            document.getElementById('shop-page').querySelector('h2').textContent = `${categoryName} Collection`;
+        }
+
+        // Function to filter products based on search input
+        function filterProducts() {
+            const query = shopSearchInput.value.toLowerCase();
+            const filtered = products.filter(product => {
+                const nameMatch = product.name.toLowerCase().includes(query);
+                const descMatch = product.description.toLowerCase().includes(query);
+                const categoryMatch = product.category.toLowerCase().includes(query);
+                return nameMatch || descMatch || categoryMatch;
+            });
+            renderProducts(filtered, 'shop-product-grid');
+        }
+
+        // Function to display the product details page
+        function showProductDetails(productIndex) {
+            previousPage = currentPageId;
+            const product = products[productIndex];
+            if (!product) {
+                console.error("Product not found at index:", productIndex);
+                return;
+            }
+            
+            // Populate the details page with product data
+            productImage.src = product.image;
+            productImage.alt = product.name;
+            productName.textContent = product.name;
+            productCategory.textContent = product.category;
+            productDescription.textContent = product.description;
+            productPrice.textContent = product.price;
+            sellerName.textContent = product.sellerName;
+            sellerStory.textContent = product.sellerStory;
+
+            // Handle customization options
+            customOptions.innerHTML = ''; // Clear previous options
+            if (product.customizableOptions && product.customizableOptions.length > 0) {
+                document.getElementById('customization-section').classList.remove('hidden');
+                product.customizableOptions.forEach(option => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = "flex items-center space-x-2";
+                    if (option === 'Color') {
+                        optionDiv.innerHTML = `
+                            <label class="text-gray-300">Choose Color:</label>
+                            <input type="color" class="w-12 h-8 rounded-md bg-gray-700 border-none">
+                        `;
+                    } else if (option === 'Renaming' || option === 'Initials') {
+                        optionDiv.innerHTML = `
+                            <label class="text-gray-300">Enter ${option}:</label>
+                            <input type="text" placeholder="Enter text..." class="w-full rounded-md bg-gray-700 border-gray-600 text-gray-100 px-3 py-2">
+                        `;
+                    } else {
+                        // For other options, just show a generic input
+                        optionDiv.innerHTML = `
+                            <label class="text-gray-300">Choose ${option}:</label>
+                            <input type="text" placeholder="Specify..." class="w-full rounded-md bg-gray-700 border-gray-600 text-gray-100 px-3 py-2">
+                        `;
+                    }
+                    customOptions.appendChild(optionDiv);
+                });
+            } else {
+                document.getElementById('customization-section').classList.add('hidden');
+            }
+
+            showPage('product-details-page');
+        }
+
+        // Function to navigate back to the previous page
+        function goBack() {
+            showPage(previousPage);
+        }
+
+        // Function to show a specific page section
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            previousPage = currentPageId;
+            currentPageId = pageId;
+
+            // Re-render content based on the page
+            if (pageId === 'home-page') {
+                 // Nothing to render on the home page as it's static
+            } else if (pageId === 'shop-page') {
+                document.getElementById('shop-page').querySelector('h2').textContent = `All Products`;
+                renderProducts(products, 'shop-product-grid');
+                shopSearchInput.value = '';
+            } else if (pageId === 'categories-page') {
+                renderCategories();
+            } else if (pageId === 'wish-page') {
+                renderWishes();
+            } else if (pageId === 'about-page') { // New logic for About page
+                renderArtisanProfiles();
+            }
+        }
+
+        // Function to show the chatbot modal
+        chatButton.addEventListener('click', () => {
+            chatbotModal.classList.remove('hidden');
+            chatbotModal.classList.add('flex');
+        });
+
+        // Function to hide the chatbot modal
+        function hideChatbot() {
+            chatbotModal.classList.add('hidden');
+            chatbotModal.classList.remove('flex');
+        }
+
+        // Function to show the login modal
+        function showLogin() {
+            loginModal.classList.remove('hidden');
+            loginModal.classList.add('flex');
+        }
+
+        // Function to hide the login modal
+        function hideLogin() {
+            loginModal.classList.add('hidden');
+            loginModal.classList.remove('flex');
+        }
+
+        // Function to toggle the mobile menu
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        // --- Wish Page Functions ---
+        let isSellerView = false;
+        function toggleView() {
+            isSellerView = !isSellerView;
+            if (isSellerView) {
+                customerView.classList.add('hidden');
+                sellerView.classList.remove('hidden');
+                toggleViewBtn.textContent = "Switch to Customer View";
+            } else {
+                customerView.classList.remove('hidden');
+                sellerView.classList.add('hidden');
+                toggleViewBtn.textContent = "Switch to Seller View";
+            }
+            renderWishes();
+        }
+
+        wishForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(wishForm);
+            const newWish = {
+                id: wishes.length + 1,
+                productName: formData.get('productName'),
+                description: formData.get('description'),
+                contact: formData.get('contact'),
+                imageUrl: formData.get('imageUrl') || 'https://placehold.co/400x300/e0e0e0/555555?text=Image+Not+Provided'
+            };
+            wishes.push(newWish);
+            wishForm.reset();
+            // Use a custom message box instead of alert()
+            const messageBox = document.createElement('div');
+            messageBox.className = "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 border-2 border-green-500 rounded-lg shadow-xl p-6 text-center z-[100] transform transition-opacity duration-300 opacity-0";
+            messageBox.innerHTML = `
+                <p class="text-green-500 text-lg font-bold mb-2">Success!</p>
+                <p class="text-gray-100">Your wish has been submitted!</p>
+            `;
+            document.body.appendChild(messageBox);
+            setTimeout(() => {
+                messageBox.classList.add('opacity-100');
+            }, 10);
+            setTimeout(() => {
+                messageBox.classList.remove('opacity-100');
+                setTimeout(() => messageBox.remove(), 300);
+            }, 2000);
+
+            renderWishes();
+        });
+
+        function renderWishes() {
+            wishesList.innerHTML = '';
+            if (wishes.length === 0) {
+                wishesList.innerHTML = '<p class="text-center text-gray-500">No wishes have been submitted yet.</p>';
+                return;
+            }
+            wishes.forEach(wish => {
+                const wishCard = document.createElement('div');
+                wishCard.className = "bg-gray-700 rounded-xl p-6 shadow-lg";
+                wishCard.innerHTML = `
+                    <h3 class="text-xl font-bold text-red-600 font-lora">${wish.productName}</h3>
+                    <p class="text-gray-300 mt-2">${wish.description}</p>
+                    <p class="text-sm text-gray-400 mt-2">Contact: ${wish.contact}</p>
+                    ${wish.imageUrl ? `<img src="${wish.imageUrl}" alt="Wish idea" class="w-full h-48 object-cover rounded-md mt-4">` : ''}
+                `;
+                wishesList.appendChild(wishCard);
+            });
+        }
+        // --- End of Wish Page Functions ---
+
+        // Initial render of products for the home page when the DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+             // We don't need to render products on the home page as it's static
+             // But we do need to show the initial home page section
+             showPage('home-page');
+        });
+    </script>
+</body>
+</html>
